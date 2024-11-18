@@ -1,0 +1,29 @@
+#CategoriesBarNav {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: 30px;
+  justify-content: center;
+  max-width: 900px;
+  padding: 10px;
+  margin: 10px;
+  background-color: aliceblue;
+  border-radius: 25px;
+  border : 1px solid #cdd9c9;
+}
+#CategoriesBarNav a {
+  color: #91a8a4;
+}
+
+#CategoriesBarNav a:hover {
+  color: #776871;
+}
+
+#CategoriesBarNav a:focus {
+  color: #776871;
+}
+
+
+#CategoriesBarNav .focus {
+    color: #776871;
+}

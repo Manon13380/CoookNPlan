@@ -1,0 +1,43 @@
+#header{
+    background-image: url("../../assets/Images/cuisine.jpg") ;
+    background-size: cover;
+    background-position :50% 35%;
+    height: 350px;
+}
+
+.BarNav {
+    display: flex;
+    justify-content: flex-end;
+    list-style-type: none;
+    gap : 10px;
+    margin :0;
+    padding: 40px;
+}
+
+.BarNav a{
+    color: #776871;
+}
+
+.BarNav a:hover{
+    color: #4c4147;
+}
+
+.BarNav a:focus{
+    color: #4c4147;
+}
+
+#Title {
+    color: Black;
+    font-size: 2.5rem;
+}
+
+#search {
+    flex: 1; 
+    border-radius: 25px;
+    text-align: center;
+    padding: 5px 30px;
+    font-size: 15px; 
+    outline: none; 
+    background-color: transparent; 
+    color:#91a8a4;
+}
