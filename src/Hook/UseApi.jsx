@@ -12,13 +12,11 @@ export default function useApi () {
        axios.get(url) 
         .then((response) => {
             setIsLoaded(true);
-            setData(response.data);
-            console.log(response.data)
+            setData(response.data)
         })
         .catch((err) => {
             setIsLoaded(false); 
             setError(err); 
-            console.log(error)
             
         });
 

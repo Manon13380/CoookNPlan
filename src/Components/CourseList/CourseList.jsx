@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import { selectIngredient } from "../../features/IngredientSlice";
+import { selectIngredient, updateIngredient, deleteIngredient } from "../../features/IngredientSlice";
 import "../CourseList/CourseList.css";
 import { useState } from "react";
+
 
 const CourseList = () => {
   const ingredients = useSelector((state) => selectIngredient(state));
@@ -10,21 +11,27 @@ const CourseList = () => {
   const [editValues, setEditValues] = useState({
     measure: "",
     date: "",
+    originalIndex : ""
   });
 
   const handleEditClick = (index, ingredient) => {
     setEditingIndex(index);
-    setEditValues({ measure: ingredient.measure, date: ingredient.date});
+    setEditValues({ measure: ingredient.measure, date: ingredient.date, originalIndex : ingredient.originalIndex});
   };
-  console.log(ingredients)
+ 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setEditValues({ ...editValues, [name]: value });
   };
 
-  const handleValidateClick = (index) => {
-    // dispatch(updateIngredient(editValues));
+  console.log(ingredients)
+
+  const handleValidateClick = () => {
+    dispatch(updateIngredient(editValues));
     setEditingIndex(null);
+  };
+  const handleDeleteClick = (ingredient) => {
+    dispatch(deleteIngredient(ingredient));
   };
 
   function formatDate(dateString) {
@@ -76,7 +83,7 @@ const CourseList = () => {
                 {editingIndex === index ? (
                   <button
                     className="validate-btn"
-                    onClick={() => handleValidateClick(index)}
+                    onClick={() => handleValidateClick()}
                   >
                     Valider
                   </button>
@@ -88,7 +95,7 @@ const CourseList = () => {
                     Modifier
                   </button>
                 )}
-                <button className="delete-btn">Supprimer</button>
+                <button   onClick={() => handleDeleteClick(ingredient)} className="delete-btn">Supprimer</button>
               </div>
             </li>
           ))}
