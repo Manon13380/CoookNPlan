@@ -1,0 +1,71 @@
+#modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999; 
+}
+
+
+#modalContainer {
+  background-color: #91a8a4;
+  width: 300px;
+  height: 150px;
+  position: fixed; 
+  top: 50%;
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  border-radius: 10px;
+  padding: 20px;
+  z-index: 1000;
+  border-radius: 15px;
+}
+
+.relative {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.relative p {
+  margin: 0;
+  height: 40px;
+}
+
+.close-button {
+  height: 20px;
+  width: 20px;
+  font-size: 10px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  position: absolute;
+  top: -20px;
+  right: -10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#modalContainer input[type="date"] {
+  background-color: #e8f7e4;
+  color: #91a8a4;
+  text-align: center;
+  border: none;
+  border-radius: 10px;
+}
+
+
+.validate {
+    background-color: #776871;
+}

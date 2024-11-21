@@ -1,29 +1,22 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import "../Header/Header.css";
-import { useContext, useEffect, useRef, useState } from "react";
-import { MyContext } from "../../assets/Context/AppContext";
+import { useEffect, useState } from "react";
+import CategoriesBarNav from "../CategoriesBarNav/CategoriesBarNav";
+import DisplayRecipes from "../DisplayRecipes/DisplayRecipes";
+import Recipe from "../Recipe/Recipe";
+import CourseList from "../CourseList/CourseList";
+import Planning from "../Planning/Planning";
 
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const { store, setStore } = useContext(MyContext);
   const location = useLocation();
-  const timerRef = useRef(null);
 
-  useEffect(() => {
-    timerRef.current = setTimeout(() => {
-      if (searchTerm.length >= 3) {
-        setStore({ ...store, searchTerm: searchTerm });
-      } else {
-        setStore({ ...store, searchTerm: "" });
-      }
-    }, 500);
-
-    return () => clearTimeout(timerRef.current);
-  }, [searchTerm]);
+  const { id } = useParams();
+  const isRecipePage = location.pathname.startsWith("/Recipe/");
 
   useEffect(() => {
     setSearchTerm("");
-  }, [location.pathname])
+  }, [location.pathname]);
 
   return (
     <>
@@ -50,6 +43,20 @@ const Header = () => {
           value={searchTerm}
         />
       </div>
+      <main>
+        {location.pathname === "/Courses" ? (
+          <CourseList></CourseList>
+        ): location.pathname === "/Planning" ?(<Planning></Planning>): (
+          <>
+            <CategoriesBarNav />
+            {isRecipePage ? (
+              <Recipe id={id} />
+            ) : (
+              <DisplayRecipes searchTerm={searchTerm} />
+            )}
+          </>
+        )}
+      </main>
     </>
   );
 };

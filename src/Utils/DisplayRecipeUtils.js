@@ -1,36 +1,39 @@
 import { useLocation } from "react-router-dom";
 import useApi from "../Hook/UseApi";
-import { useContext, useEffect } from "react";
-import { MyContext } from "../assets/Context/AppContext";
+import { useEffect } from "react";
 
 const categoryApiMapping = {
-  "/": "http://www.themealdb.com/api/json/v1/1/filter.php?c=Beef",
-  "/Beef": "http://www.themealdb.com/api/json/v1/1/filter.php?c=Beef",
-  "/Chicken": "http://www.themealdb.com/api/json/v1/1/filter.php?c=Chicken",
-  "/Dessert": "http://www.themealdb.com/api/json/v1/1/filter.php?c=Dessert",
-  "/Lamb": "http://www.themealdb.com/api/json/v1/1/filter.php?c=Lamb",
-  "/Miscellaneous": "http://www.themealdb.com/api/json/v1/1/filter.php?c=Miscellaneous",
-  "/Pasta": "http://www.themealdb.com/api/json/v1/1/filter.php?c=Pasta",
-  "/Pork": "http://www.themealdb.com/api/json/v1/1/filter.php?c=Pork",
-  "/Seafood": "http://www.themealdb.com/api/json/v1/1/filter.php?c=Seafood",
-  "/Side": "http://www.themealdb.com/api/json/v1/1/filter.php?c=Side",
-  "/Starter": "http://www.themealdb.com/api/json/v1/1/filter.php?c=Starter",
-  "/Vegan": "http://www.themealdb.com/api/json/v1/1/filter.php?c=Vegan",
-  "/Vegetarian": "http://www.themealdb.com/api/json/v1/1/filter.php?c=Vegetarian",
-  "/Breakfast": "http://www.themealdb.com/api/json/v1/1/filter.php?c=Breakfast",
-  "/Goat": "http://www.themealdb.com/api/json/v1/1/filter.php?c=Goat"
+  "/": "https://www.themealdb.com/api/json/v1/1/filter.php?c=Beef",
+  "/Beef": "https://www.themealdb.com/api/json/v1/1/filter.php?c=Beef",
+  "/Chicken": "https://www.themealdb.com/api/json/v1/1/filter.php?c=Chicken",
+  "/Dessert": "https://www.themealdb.com/api/json/v1/1/filter.php?c=Dessert",
+  "/Lamb": "https://www.themealdb.com/api/json/v1/1/filter.php?c=Lamb",
+  "/Miscellaneous": "https://www.themealdb.com/api/json/v1/1/filter.php?c=Miscellaneous",
+  "/Pasta": "https://www.themealdb.com/api/json/v1/1/filter.php?c=Pasta",
+  "/Pork": "https://www.themealdb.com/api/json/v1/1/filter.php?c=Pork",
+  "/Seafood": "https://www.themealdb.com/api/json/v1/1/filter.php?c=Seafood",
+  "/Side": "https://www.themealdb.com/api/json/v1/1/filter.php?c=Side",
+  "/Starter": "https://www.themealdb.com/api/json/v1/1/filter.php?c=Starter",
+  "/Vegan": "https://www.themealdb.com/api/json/v1/1/filter.php?c=Vegan",
+  "/Vegetarian": "https://www.themealdb.com/api/json/v1/1/filter.php?c=Vegetarian",
+  "/Breakfast": "https://www.themealdb.com/api/json/v1/1/filter.php?c=Breakfast",
+  "/Goat": "https://www.themealdb.com/api/json/v1/1/filter.php?c=Goat"
 };
 
-export const DisplayRecipesByCategories = () => {
-  const {store, setStore} = useContext(MyContext)
+export const DisplayRecipesByCategories = ({searchTerm}) => {
   const { data, isLoaded, error, fetchData } = useApi();
   const location = useLocation();
 
   useEffect(() => {
-    const apiUrl = categoryApiMapping[location.pathname];
+    if (searchTerm !== "") {
+      fetchData(`http://www.themealdb.com/api/json/v1/1/search.php?s=${searchTerm}`);
+    } else {
+      const apiUrl = categoryApiMapping[location.pathname];
       fetchData(apiUrl);
-  }, [location.pathname]); 
-  
-  
+    }
+
+  }, [location.pathname, searchTerm]);
+
+
   return { data, isLoaded, error };
 };

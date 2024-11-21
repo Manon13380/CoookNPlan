@@ -2,7 +2,7 @@
 import Footer from "../Components/Footer/Footer";
 import Header from "../Components/Header/Header";
 
-const Home = () => {
+const RecipePage = () => {
   return (
     <>
       <Header></Header>
@@ -11,4 +11,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default RecipePage;

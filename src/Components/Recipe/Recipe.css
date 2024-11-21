@@ -1,0 +1,13 @@
+.textColor{
+    color: #776871;
+}
+
+.recipeImg{
+    border-radius: 25px;
+    width: 400px;
+}
+
+.ingredientContainer li {
+list-style: none;
+color : #776871;
+}

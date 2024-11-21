@@ -9,14 +9,16 @@ export default function useApi () {
     const [error, setError] = useState(null)
 
     const fetchData = (url) => {
-        axios.get(url) 
+       axios.get(url) 
         .then((response) => {
             setIsLoaded(true);
             setData(response.data);
+            console.log(response.data)
         })
         .catch((err) => {
             setIsLoaded(false); 
             setError(err); 
+            console.log(error)
             
         });
 
