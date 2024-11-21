@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import useApi from "../Hook/UseApi";
+import useApi from "../Hooks/UseApi";
 import { useEffect } from "react";
 
 const categoryApiMapping = {
@@ -26,7 +26,7 @@ export const DisplayRecipesByCategories = ({searchTerm}) => {
 
   useEffect(() => {
     if (searchTerm !== "") {
-      fetchData(`http://www.themealdb.com/api/json/v1/1/search.php?s=${searchTerm}`);
+      fetchData(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchTerm}`);
     } else {
       const apiUrl = categoryApiMapping[location.pathname];
       fetchData(apiUrl);

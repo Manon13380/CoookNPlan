@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import useApi from "../../Hook/UseApi";
+import useApi from "../../Hooks/UseApi";
 import "../Recipe/Recipe.css";
 
 const Recipe = ({ id }) => {

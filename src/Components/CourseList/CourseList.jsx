@@ -24,7 +24,6 @@ const CourseList = () => {
     setEditValues({ ...editValues, [name]: value });
   };
 
-  console.log(ingredients)
 
   const handleValidateClick = () => {
     dispatch(updateIngredient(editValues));
@@ -44,7 +43,7 @@ const CourseList = () => {
   }
   return (
     <>
-      <h2>Ma liste de course :</h2>
+      <h2 className="title">Ma liste de course :</h2>
       {ingredients.length > 0 ? (
         <ul id="ingredientList">
           {ingredients.map((ingredient, index) => (
@@ -101,7 +100,7 @@ const CourseList = () => {
           ))}
         </ul>
       ) : (
-        <p>Aucune recette ajouter au planning</p>
+        <p>Aucune recette dans le planning</p>
       )}
     </>
   );

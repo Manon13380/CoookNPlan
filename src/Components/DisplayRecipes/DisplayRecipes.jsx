@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { DisplayRecipesByCategories } from "../../Utils/DisplayRecipeUtils";
 import "../DisplayRecipes/DisplayRecipes.css";
 import AddRecipeModal from "../Modals/AddRecipeModal";
-import { useToggle } from "../../Hook/useToggle";
+import { useToggle } from "../../Hooks/useToggle";
 import { useState } from "react";
 
 const DisplayRecipes = ({ searchTerm }) => {

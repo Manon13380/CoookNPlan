@@ -33,6 +33,7 @@ const Header = () => {
           </li>
         </ul>
         <h1 id="Title">CookNPlan</h1>
+        {location.pathname != "/Courses"  && location.pathname != "/Planning"  && (
         <input
           onChange={(e) => {
             setSearchTerm(e.target.value);
@@ -41,7 +42,7 @@ const Header = () => {
           type="text"
           placeholder="Rechercher une recette"
           value={searchTerm}
-        />
+        />)}
       </div>
       <main>
         {location.pathname === "/Courses" ? (

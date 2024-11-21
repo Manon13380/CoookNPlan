@@ -1,9 +1,8 @@
 import { useDispatch } from "react-redux";
 import "../Modals/AddRecipeModal.css";
-import { addRecipe } from "../../features/RecipeSlice";
-import { addIngredient } from "../../features/IngredientSlice";
-import axios from "axios";
 import { useState } from "react";
+import { fetchRecipesAndIngredients } from "../../app/Middlewares/Thunks/FetchRecipesAndIngredients";
+import toastr from "toastr";
 
 const AddRecipeModal = ({
   isOpen,
@@ -19,45 +18,36 @@ const AddRecipeModal = ({
   };
 
   const handleAddRecipe = async () => {
-    //mettre un toast si selecdate vide
     if (selectedDate != "") {
-      await axios
-        .get(
-          `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${selectedRecipeId}`
-        )
-        .then((response) => {
-          dispatch(
-            addRecipe({
-              recipe: response.data.meals[0],
-              date: selectedDate,
-            })
-          );
-          dispatch(
-            addIngredient({
-              recipe: response.data.meals[0],
-              date: selectedDate,
-            })
-          );
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-
+      dispatch(fetchRecipesAndIngredients(selectedRecipeId, selectedDate));
       onClose();
+      toastr.success("Recette ajouté au planning ", "Succès :", {
+        closeButton: true,
+        progressBar: true,
+        positionClass: "toast-bottom-right",
+        timeOut: 3000,
+      });
+    }else {
+      toastr.warning("Aucune date selectionné !", "Attention", {
+        closeButton: true,
+        progressBar: true,
+        positionClass: "toast-bottom-right",
+        timeOut: 3000,
+      });
     }
   };
   const handleClickOutside = (e) => {
-    if (e.target.id === "modalOverlay") {
+    if (e.target.className === "modalOverlay") {
       onClose();
     }
   };
   if (!isOpen) return null;
   return (
     <>
-      <div id="modalOverlay" onClick={handleClickOutside}>
-        <div id="modalContainer">
+      <div className="modalOverlay" onClick={handleClickOutside}>
+        <div className="modalContainer">
           <div className="relative">
-            <p>
+            <p id="recipeInfo">
               Ajouter <b>{selectedRecipe}</b> à mon planning :
             </p>
             <input type="date" onChange={handleDateChange} required />

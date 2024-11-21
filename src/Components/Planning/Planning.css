@@ -2,3 +2,29 @@
 width: 80%;
 margin-bottom: 50px;
 }
+
+.modalPlanning  {
+    height: 150px;
+    display: flex;
+}
+
+.modalPlanning div  {
+    display: flex;
+    gap: 50px;
+}
+
+.cancel-btn {
+    background-color: #f48536;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        font-size: 14px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      
+      
+}
+.cancel-btn:hover {
+    background-color: #c66c2c;
+      }

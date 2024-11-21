@@ -1,6 +1,6 @@
 import { Link, useLocation} from "react-router-dom";
 import "../CategoriesBarNav/CategoriesBarNav.css";
-import useApi from "../../Hook/UseApi";
+import useApi from "../../Hooks/UseApi";
 import { useEffect } from "react";
 
 const CategoriesBarNav = () => {

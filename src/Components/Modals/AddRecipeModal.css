@@ -1,25 +1,24 @@
-#modalOverlay {
+.modalOverlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); 
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999; 
+  z-index: 999;
 }
 
-
-#modalContainer {
+.modalContainer {
   background-color: #91a8a4;
   width: 300px;
-  height: 150px;
-  position: fixed; 
+  height: 200px;
+  position: fixed;
   top: 50%;
-  left: 50%; 
-  transform: translate(-50%, -50%); 
+  left: 50%;
+  transform: translate(-50%, -50%);
   border-radius: 10px;
   padding: 20px;
   z-index: 1000;
@@ -57,7 +56,7 @@
   align-items: center;
 }
 
-#modalContainer input[type="date"] {
+.modalContainer input[type="date"] {
   background-color: #e8f7e4;
   color: #91a8a4;
   text-align: center;
@@ -65,7 +64,15 @@
   border-radius: 10px;
 }
 
-
 .validate {
-    background-color: #776871;
+  background-color: #776871;
+}
+
+#recipeInfo {
+  height: 70px;
+}
+
+
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
 }
