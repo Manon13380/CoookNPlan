@@ -33,7 +33,7 @@ const Header = () => {
           </li>
         </ul>
         <h1 id="Title">CookNPlan</h1>
-        {location.pathname != "/Courses"  && location.pathname != "/Planning"  && !location.pathname.startsWith("/Recipe") &&(
+        {location.pathname != "/Courses"  && location.pathname != "/Planning"  && !isRecipePage &&(
         <input
           onChange={(e) => {
             setSearchTerm(e.target.value);
@@ -49,9 +49,9 @@ const Header = () => {
           <CourseList></CourseList>
         ): location.pathname === "/Planning" ?(<Planning></Planning>): (
           <>
-            <CategoriesBarNav />
+            {!isRecipePage && (<CategoriesBarNav />)}
             {isRecipePage ? (
-              <Recipe id={id} />
+              <Recipe id={id}/>
             ) : (
               <DisplayRecipes searchTerm={searchTerm} />
             )}
