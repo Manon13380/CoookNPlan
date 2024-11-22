@@ -16,6 +16,7 @@ const RecipeSlice = createSlice({
         },
         updateDateRecipe : (state, action) => {
             const recipeToUpdate = state.value.find((recipe) => recipe.recipe.idMeal === action.payload.id );
+            console.log(recipeToUpdate)
             recipeToUpdate.date = action.payload.date
         }
         }

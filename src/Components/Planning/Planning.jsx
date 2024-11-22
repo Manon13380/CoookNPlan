@@ -46,15 +46,17 @@ const Planning = () => {
 
   function formatDate(dateString) {
     const date = new Date(dateString);
-    const day = String(date.getDate()).padStart(2, "0");
-    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate());
+    const month = String(date.getMonth() + 1);
     const year = date.getFullYear();
 
     return `${year}-${month}-${day}`;
   }
   const handleEventDrop = (info) => {
-    dispatch(updateDateRecipe({id : info.event._def.publicId, date : formatDate(info.event.start)}));
+    console.log(formatDate(info.event._def.publicId))
+    dispatch(updateDateRecipe({id : info.event._def.extendedProps.idRecipe, date : formatDate(info.event.start)}));
   };
+
   return (
     <>
       <h2 className="title">Planning des repas</h2>
