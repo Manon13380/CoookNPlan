@@ -1,22 +1,18 @@
 import { Link, useLocation} from "react-router-dom";
 import "../CategoriesBarNav/CategoriesBarNav.css";
-import useApi from "../../Hooks/UseApi";
-import { useEffect } from "react";
+import { useGetCategoriesQuery } from "../../features/api/ApiSlice";
+
 
 const CategoriesBarNav = () => {
-  const { data, isLoaded, error, fetchData } = useApi();
+  const { data, error, isLoading } = useGetCategoriesQuery();
   const location = useLocation();
-
-  useEffect(() => {
-    fetchData("https://www.themealdb.com/api/json/v1/1/categories.php");
-  }, []);
 
 
   return (
     <ul id="CategoriesBarNav">
       {error ? (
         <div>Error: {error.message}</div>
-      ) : !isLoaded ? (
+      ) : isLoading ? (
         <div>Loading...</div>
       ) : (
         data.categories.map((category) => (

@@ -12,10 +12,10 @@ const RecipeSlice = createSlice({
             state.value.push({ recipe: action.payload.recipe, date: action.payload.date })
         },
         deleteRecipe : (state, action) => {
-            state.value = state.value.filter((recipe) => recipe.recipe.idMeal !== action.payload);   
+            state.value = state.value.filter((recipe) => recipe.recipe.idMeal !== action.payload.id || recipe.date != action.payload.date );   
         },
         updateDateRecipe : (state, action) => {
-            const recipeToUpdate = state.value.find((recipe) => recipe.recipe.idMeal === action.payload.id);
+            const recipeToUpdate = state.value.find((recipe) => recipe.recipe.idMeal === action.payload.id );
             recipeToUpdate.date = action.payload.date
         }
         }

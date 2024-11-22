@@ -8,7 +8,6 @@ updateDateRecipeListener.startListening({
     type : "recipes/updateDateRecipe",
     effect : (action, listenerApi) => {
         listenerApi.dispatch(updateDateIngredient(action.payload))
-        
     }
 })
 

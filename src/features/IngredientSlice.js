@@ -31,7 +31,7 @@ const IngredientSlice = createSlice({
 
         },
         removeIngredients: (state, action) => {
-            state.value = state.value.filter((ingredient) => ingredient.recipeId !== action.payload)
+            state.value = state.value.filter((ingredient) => ingredient.recipeId !== action.payload.id || ingredient.date !== action.payload.date)
         },
         updateDateIngredient: (state, action) => {       
             state.value = state.value.map((ingredient) => {

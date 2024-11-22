@@ -18,15 +18,14 @@ const Planning = () => {
   const events = recipes.map((recipe) => ({
     title: recipe.recipe.strMeal,
     date: recipe.date,
-    id: recipe.recipe.idMeal,
+    idRecipe: recipe.recipe.idMeal,
   }));
-
 
 
   const showEvent = (info) => {
     toggleModal();
     setInfoEvent(info.event);
-  };
+  }
 
   const handleClickOutside = (e) => {
     if (e.target.className === "modalOverlay") {
@@ -35,7 +34,7 @@ const Planning = () => {
   };
 
   const handleDeleteRecipe = () => {
-    dispatch(deleteRecipe(infoEvent.id));
+    dispatch(deleteRecipe({id :infoEvent._def.extendedProps.idRecipe, date : formatDate(infoEvent.start)})); 
     toggleModal();
     toastr.success("Recette supprimé du planning", "Succès :", {
       closeButton: true,

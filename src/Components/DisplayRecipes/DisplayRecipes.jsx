@@ -6,7 +6,7 @@ import { useToggle } from "../../Hooks/useToggle";
 import { useState } from "react";
 
 const DisplayRecipes = ({ searchTerm }) => {
-  const { data, isLoaded, error } = DisplayRecipesByCategories({ searchTerm });
+  const { data, isLoading, error } = DisplayRecipesByCategories({ searchTerm });
   const [isModalOpen, toggleModal] = useToggle();
   const [selectedRecipeId, setSelectedRecipeId] = useState(null)
   const [selectedRecipe, setSelectedRecipe] = useState(null)
@@ -22,7 +22,7 @@ const DisplayRecipes = ({ searchTerm }) => {
       <div id="recipesContainer">
         {error ? (
           <div>Error: {error.message}</div>
-        ) : !isLoaded ? (
+        ) : isLoading ? (
           <div>Loading...</div>
         ) : data.meals != null ? (
           data.meals.map((recipe) => (

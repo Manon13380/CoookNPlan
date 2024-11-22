@@ -1,39 +1,35 @@
 import { useLocation } from "react-router-dom";
-import useApi from "../Hooks/UseApi";
-import { useEffect } from "react";
+import { useGetRecipesBySearchQuery, useGetRecipesQuery } from "../features/api/ApiSlice";
 
 const categoryApiMapping = {
-  "/": "https://www.themealdb.com/api/json/v1/1/filter.php?c=Beef",
-  "/Beef": "https://www.themealdb.com/api/json/v1/1/filter.php?c=Beef",
-  "/Chicken": "https://www.themealdb.com/api/json/v1/1/filter.php?c=Chicken",
-  "/Dessert": "https://www.themealdb.com/api/json/v1/1/filter.php?c=Dessert",
-  "/Lamb": "https://www.themealdb.com/api/json/v1/1/filter.php?c=Lamb",
-  "/Miscellaneous": "https://www.themealdb.com/api/json/v1/1/filter.php?c=Miscellaneous",
-  "/Pasta": "https://www.themealdb.com/api/json/v1/1/filter.php?c=Pasta",
-  "/Pork": "https://www.themealdb.com/api/json/v1/1/filter.php?c=Pork",
-  "/Seafood": "https://www.themealdb.com/api/json/v1/1/filter.php?c=Seafood",
-  "/Side": "https://www.themealdb.com/api/json/v1/1/filter.php?c=Side",
-  "/Starter": "https://www.themealdb.com/api/json/v1/1/filter.php?c=Starter",
-  "/Vegan": "https://www.themealdb.com/api/json/v1/1/filter.php?c=Vegan",
-  "/Vegetarian": "https://www.themealdb.com/api/json/v1/1/filter.php?c=Vegetarian",
-  "/Breakfast": "https://www.themealdb.com/api/json/v1/1/filter.php?c=Breakfast",
-  "/Goat": "https://www.themealdb.com/api/json/v1/1/filter.php?c=Goat"
+  "/": "Beef",
+  "/Beef": "Beef",
+  "/Chicken": "Chicken",
+  "/Dessert": "Dessert",
+  "/Lamb": "Lamb",
+  "/Miscellaneous": "Miscellaneous",
+  "/Pasta": "Pasta",
+  "/Pork": "Pork",
+  "/Seafood": "Seafood",
+  "/Side": "Side",
+  "/Starter": "Starter",
+  "/Vegan": "Vegan",
+  "/Vegetarian": "Vegetarian",
+  "/Breakfast": "Breakfast",
+  "/Goat": "Goat"
 };
 
 export const DisplayRecipesByCategories = ({searchTerm}) => {
-  const { data, isLoaded, error, fetchData } = useApi();
+ 
   const location = useLocation();
-
-  useEffect(() => {
-    if (searchTerm !== "") {
-      fetchData(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchTerm}`);
-    } else {
-      const apiUrl = categoryApiMapping[location.pathname];
-      fetchData(apiUrl);
-    }
-
-  }, [location.pathname, searchTerm]);
+  const category = searchTerm 
+  ? searchTerm  
+  : categoryApiMapping[location.pathname];  
 
 
-  return { data, isLoaded, error };
+const { data, error, isLoading } = searchTerm 
+  ? useGetRecipesBySearchQuery(category)  
+  : useGetRecipesQuery(category);  
+
+  return { data, isLoading, error };
 };

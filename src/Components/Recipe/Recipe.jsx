@@ -1,29 +1,26 @@
-import { useEffect } from "react";
-import useApi from "../../Hooks/UseApi";
+
 import "../Recipe/Recipe.css";
+import { useGetRecipeByIdQuery } from "../../features/api/ApiSlice";
 
 const Recipe = ({ id }) => {
-  const { data, isLoaded, error, fetchData } = useApi();
+ const { data, error, isLoading } = useGetRecipeByIdQuery(id)
   const numbers = Array.from({ length: 20 }, (_, index) => index + 1);
 
-  useEffect(() => {
-    fetchData(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
-  }, []);
-  
+
   return (
     <>
       {error ? (
         <div>Error: {error.message}</div>
-      ) : !isLoaded ? (
+      ) : isLoading ? (
         <div>Loading...</div>
       ) : (
         <div>
+          <h2 className="title">{data.meals[0].strMeal}</h2>
           <img
             className="recipeImg"
             src={data.meals[0].strMealThumb}
             alt="RecipeImage"
           />
-          <p className="textColor">{data.meals[0].strMeal}</p>
           <p className="textColor"> Ingrédients :</p>
           <ul className="ingredientContainer">
             {numbers.map((number) => {
